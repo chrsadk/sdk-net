@@ -75,7 +75,6 @@ namespace PenneoTests
         }
 
         [Test]
-        [ExpectedException(typeof(KeyNotFoundException))]
         public void KeyNotFoundTest()
         {
             var mapping = new MappingBuilder<CaseFile>()
@@ -84,7 +83,9 @@ namespace PenneoTests
                 .GetMapping();
 
             var obj = new CaseFile {Status = 3};
-            mapping.GetUpdateValues(obj); //only create mapping created, so this should fail
+
+            //only create mapping created, so this should fail
+            Assert.That(() => mapping.GetUpdateValues(obj), Throws.TypeOf<KeyNotFoundException>());
         }
     }
 }

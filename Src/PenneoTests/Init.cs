@@ -8,7 +8,7 @@ namespace PenneoTests
     public class Init
     {
       
-        [SetUp]
+        [OneTimeSetUp]
         public void AssemblyInit()
         {
             PenneoConnector.Initialize(null, null);

@@ -22,35 +22,36 @@ namespace PenneoTests
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
         public void PageNotZeroTest()
         {
             ApiConnector.SetFactory(null);
-            ((ApiConnector)ApiConnector.Instance).PrepareRequest(string.Empty, page: 0, perPage: 10);
+            Assert.That(() => ((ApiConnector)ApiConnector.Instance).PrepareRequest(string.Empty, page: 0, perPage: 10), 
+                Throws.TypeOf<NotSupportedException>());
+            
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
         public void PerPageNotZeroTest()
         {
             ApiConnector.SetFactory(null);
-            ((ApiConnector)ApiConnector.Instance).PrepareRequest(string.Empty, page: 5, perPage: 0);
+            Assert.That(() => ((ApiConnector)ApiConnector.Instance).PrepareRequest(string.Empty, page: 5, perPage: 0),
+                Throws.TypeOf<NotSupportedException>());
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
         public void PageNotLessThanZeroTest()
         {
             ApiConnector.SetFactory(null);
-            ((ApiConnector)ApiConnector.Instance).PrepareRequest(string.Empty, page: -2, perPage: 10);
+            Assert.That(() => ((ApiConnector)ApiConnector.Instance).PrepareRequest(string.Empty, page: -2, perPage: 10),
+                Throws.TypeOf<NotSupportedException>());
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
         public void PerPageNotLessThanZeroTest()
         {
             ApiConnector.SetFactory(null);
-            ((ApiConnector)ApiConnector.Instance).PrepareRequest(string.Empty, page: 5, perPage: -5);
+            Assert.That(() => ((ApiConnector)ApiConnector.Instance).PrepareRequest(string.Empty, page: 5, perPage: -5),
+                Throws.TypeOf<NotSupportedException>());
         }
 
         [Test]
